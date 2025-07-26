@@ -1,24 +1,37 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
-from fastapi.responses import JSONResponse
-import os
-
-from utils.process_docx import process_docx_file
-from utils.process_xlsx import process_xlsx_file
-from utils.process_json import process_json_file
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from typing import Dict
 
 app = FastAPI()
 
-@app.post("/procesar-archivo/")
-async def procesar_archivo(file: UploadFile = File(...)):
-    filename = file.filename.lower()
-    
-    if filename.endswith(".docx"):
-        result = await process_docx_file(file)
-    elif filename.endswith(".xlsx"):
-        result = await process_xlsx_file(file)
-    elif filename.endswith(".json"):
-        result = await process_json_file(file)
-    else:
-        raise HTTPException(status_code=400, detail="Tipo de archivo no soportado.")
+# Permitir CORS para llamadas desde Power Automate u otros orígenes
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Podés restringir esto si querés
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-    return JSONResponse(content=result)
+# Ruta raíz para evitar error 404 en Render
+@app.get("/")
+def read_root():
+    return {"message": "API up and running"}
+
+# Modelo de datos esperado
+class FilePayload(BaseModel):
+    filename: str
+    content: str  # Puede ser texto, base64 u otra codificación
+
+# Endpoint principal para consumir desde Power Automate
+@app.post("/process_file/")
+async def process_file(payload: FilePayload):
+    # Podés agregar lógica de guardado, análisis o respuesta acá
+    return {
+        "status": "success",
+        "received": {
+            "filename": payload.filename,
+            "content_length": len(payload.content)
+        }
+    }

@@ -86,7 +86,7 @@ Este desarrollo es parte de un proyecto personal de automatización aplicable a 
 
 **Magalí Cazella**
 🔹 BI Developer | Automatización | Power Automate | FastAPI
-🔗 [LinkedIn]([https://www.linkedin.com/in/magali-cazella](https://www.linkedin.com/in/magali-cazella-mendez/)
+🔗 LinkedIn: https://www.linkedin.com/in/magali-cazella-mendez/
 
 ```
 

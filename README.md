@@ -1,6 +1,3 @@
-Perfecto, Magalí. Aquí tenés el contenido completo del `README.md`, listo para **copiar y pegar directamente** en la web de GitHub (hacé clic en **"Add a README"** y pegalo allí):
-
----
 
 ```markdown
 # Endpoint FastAPI para Power Automate

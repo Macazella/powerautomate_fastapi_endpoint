@@ -89,7 +89,3 @@ Este desarrollo es parte de un proyecto personal de automatización aplicable a 
 
 ---
 
-Una vez que lo pegues, guardá los cambios y ya estará visible como presentación profesional de tu proyecto.
-
-¿Te gustaría que también te genere una imagen de presentación del flujo Power Automate + API para usar como preview del repo (social preview)?
-```
